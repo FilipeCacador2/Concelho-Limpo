@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Coruche+ Limpo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+  <h1>Coruche+ Limpo</h1>
+
+
+  <div class="form-toggle">
+    <button type="button" data-form="recolhaSection">Pedido de Recolha</button>
+    <button type="button" data-form="reportSection">Reportar Contentor</button>
+  </div>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+
+
+  <section id="recolhaSection" class="form-section">
+  <h2 class="form-title">Pedido de Recolha</h2>
+  
+   <form id="recolhaForm" method="POST" action="{{ url_for('submit_recolha') }}">
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="text" name="nif" placeholder="NIF" required>
+      <input type="text" name="morada_recolha" placeholder="Morada" required>
+      <select name="tipo_recolha" required>
+        <option value="Monos domésticos">Monos domésticos</option>
+        <option value="Entulho">Entulho</option>
+        <option value="Outros Residuos">Outros Resíduos</option>
+      </select>
+      <input type="text" name="telefone" id="telefone" placeholder="Telefone">
+      <input type="email" name="email" id="email" placeholder="Email">
+      <button type="submit">Submeter</button>
+    </form>
+  </section>
+
+  <section id="reportSection" class="form-section">
+    <h2 class="form-title">Reportar contentor negligenciado</h2>
+    <form action="/submit_report" method="POST" enctype="multipart/form-data">
+      <input type="text" name="localizacao" placeholder="Localização" required>
+      <input type="file" name="foto" accept="image/*" required>
+      <button type="submit">Submeter</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Coruche+ Limpo</p>
+      <nav>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="https://www.cm-coruche.pt/">Câmara Municipal</a></li>
+          <li><a href="https://ecoleziria.pt/">Ecoleziria</a></li>
+          <li><a href="{{ url_for('login') }}">Área Administrativa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
+
