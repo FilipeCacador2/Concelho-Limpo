@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <title>Área de Administração</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
-</head>
-<body>
-  <header>
-    <h1>Bem-vindo, {{ user }}</h1>
-    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
-  </header>
+  <head>
+    <meta charset="UTF-8">
+    <title>Área de Administração</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+  </head>
+  
+  <body>
+    <header>
+      <h1>Bem-vindo, {{ user }}</h1>
+      <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </header>
 
-  <main>
-    <section>
-      <h2>Pedidos de Recolha</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th><th>Nome</th><th>NIF</th><th>Morada</th>
-            <th>Tipo</th><th>Telefone</th><th>Email</th><th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in recolhas %}
-          <tr>
-            <td>{{ r.id_form }}</td>
-            <td>{{ r.nome }}</td>
-            <td>{{ r.nif }}</td>
-            <td>{{ r.morada_recolha }}</td>
-            <td>{{ r.tipo_recolha }}</td>
-            <td>{{ r.telefone }}</td>
-            <td>{{ r.email }}</td>
-            <td><a href="/delete/form_recolha/{{ r.id_form }}" class="delete-btn">Eliminar</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </section>
+    <main>
+      <section>
+        <h2>Pedidos de Recolha</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Nome</th><th>NIF</th><th>Morada</th>
+              <th>Tipo</th><th>Telefone</th><th>Email</th><th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in recolhas %}
+            <tr>
+              <td>{{ r.id_form }}</td>
+              <td>{{ r.nome }}</td>
+              <td>{{ r.nif }}</td>
+              <td>{{ r.morada_recolha }}</td>
+              <td>{{ r.tipo_recolha }}</td>
+              <td>{{ r.telefone }}</td>
+              <td>{{ r.email }}</td>
+              <td><a href="/delete/form_recolha/{{ r.id_form }}" class="delete-btn">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
 
-    <section>
-      <h2>Ocorrências Reportadas</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th><th>Localização</th><th>Foto</th><th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for rep in reports %}
-          <tr>
-            <td>{{ rep.id_report }}</td>
-            <td>{{ rep.localizacao }}</td>
-            <td>
-              <img src="/image/{{ rep.id_report }}" alt="Foto" style="max-width:150px; max-height:150px; border-radius:5px;">
-            </td>
-            <td>
-              <a href="/delete/form_report/{{ rep.id_report }}" class="delete-btn">Eliminar</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </section>
+      <section>
+        <h2>Ocorrências Reportadas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Localização</th><th>Foto</th><th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rep in reports %}
+            <tr>
+              <td>{{ rep.id_report }}</td>
+              <td>{{ rep.localizacao }}</td>
+              <td>
+                <img src="/image/{{ rep.id_report }}" alt="Foto" style="max-width:150px; max-height:150px; border-radius:5px;">
+              </td>
+              <td>
+                <a href="/delete/form_report/{{ rep.id_report }}" class="delete-btn">Eliminar</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
 
-  </main>
-</body>
+    </main>
+  </body>
 </html>
