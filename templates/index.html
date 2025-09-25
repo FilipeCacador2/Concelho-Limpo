@@ -4,24 +4,19 @@
     <meta charset="UTF-8">
     <title>Coruche+ Limpo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
   </head>
   <body>
     <h1>Coruche+ Limpo</h1>
 
-
     <div class="form-toggle">
       <button type="button" data-form="recolhaSection">Pedido de Recolha</button>
       <button type="button" data-form="reportSection">Reportar Contentor</button>
+      <button type="button" data-form="mapSection">Mapa de Ecopontos</button>
     </div>
 
-  <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
-
-
     <section id="recolhaSection" class="form-section">
-    <h2 class="form-title">Pedido de Recolha</h2>
-    
-    <form id="recolhaForm" method="POST" action="{{ url_for('submit_recolha') }}">
+      <h2 class="form-title">Pedido de Recolha</h2>
+      <form id="recolhaForm" method="POST" action="{{ url_for('submit_recolha') }}">
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="text" name="nif" placeholder="NIF" required>
         <input type="text" name="morada_recolha" placeholder="Morada" required>
@@ -30,8 +25,8 @@
           <option value="Entulho">Entulho</option>
           <option value="Outros Residuos">Outros Resíduos</option>
         </select>
-        <input type="text" name="telefone" id="telefone" placeholder="Telefone">
-        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="text" name="telefone" placeholder="Telefone">
+        <input type="email" name="email" placeholder="Email">
         <button type="submit">Submeter</button>
       </form>
     </section>
@@ -44,6 +39,13 @@
         <button type="submit">Submeter</button>
       </form>
     </section>
+
+    <section id="mapSection" class="form-section">
+      <h2 class="form-title">Mapa de Ecopontos e Contentores</h2>
+      <div id="map"></div>
+      
+    </section>
+
 
     <footer>
       <div class="footer-content">
@@ -58,6 +60,8 @@
         </nav>
       </div>
     </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAPS6A5Zs7cXpcqGeYFbX85fcS5HTxg28&callback=initMap" async></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
   </body>
 </html>
-

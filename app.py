@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, send_file, flash, get_flashed_messages
+from flask import Flask, render_template, request, redirect, url_for, session, send_file, flash, get_flashed_messages, jsonify
 import mysql.connector, io
 
 app = Flask(__name__)
@@ -79,6 +79,17 @@ def image(report_id):
         return send_file(io.BytesIO(row[0]), mimetype="image/jpeg")
     else:
         return "No image", 404
+    
+@app.route("/map-data")
+def map_data():
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT id, nome, tipo, lat, lng FROM ecopontos")
+    points = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return jsonify(points)
+
 
 
 @app.route("/login", methods=["GET", "POST"])
