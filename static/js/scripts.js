@@ -3,16 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const forms = document.querySelectorAll(".form-section");
 
   function showForm(formId, button) {
-    // Hide all
     forms.forEach(section => section.style.display = "none");
-    // Show selected
     document.getElementById(formId).style.display = "block";
 
-    // Highlight active button
     buttons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
 
-    // If map is shown, recenter
     if (formId === "mapSection" && window.map) {
       window.map.setCenter(window.mapCenter);
     }
@@ -25,32 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Default: show first section
   if (buttons.length > 0) {
     buttons[0].click();
   }
 });
 
 async function initMap() {
-  // Import Maps libraries
   const { Map } = await google.maps.importLibrary("maps");
   const { Marker } = await google.maps.importLibrary("marker");
 
-  // Center of Coruche
   window.mapCenter = { lat: 38.9590, lng: -8.5250 };
 
-  // Create map
   window.map = new Map(document.getElementById("map"), {
     zoom: 14,
     center: window.mapCenter,
   });
 
-  // Load points from Flask
   fetch("/map-data")
     .then(response => response.json())
     .then(points => {
       points.forEach(p => {
-        // Choose icon based on tipo
         let iconUrl;
         switch (p.tipo) {
           case "Contentor":
@@ -66,8 +56,8 @@ async function initMap() {
           title: p.nome,
           icon: {
             url: iconUrl,
-            scaledSize: new google.maps.Size(32, 32),  // resize
-            anchor: new google.maps.Point(16, 32),     // bottom-center
+            scaledSize: new google.maps.Size(32, 32),  
+            anchor: new google.maps.Point(16, 32),     
           }
         });
 
@@ -83,6 +73,5 @@ async function initMap() {
     .catch(err => console.error("Erro a carregar pontos:", err));
 }
 
-// Initialize map after everything loads
 window.addEventListener("load", initMap);
 

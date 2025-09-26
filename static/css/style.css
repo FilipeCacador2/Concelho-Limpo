@@ -154,7 +154,7 @@ footer nav ul li a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 120px); /* keeps footer visible */
+  min-height: calc(100vh - 120px);
 }
 
 .login-form {

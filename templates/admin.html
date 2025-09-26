@@ -68,7 +68,6 @@
       <section>
   <h2>Gerir Ecopontos</h2>
 
-  <!-- Form to add a new ecoponto -->
   <form action="{{ url_for('add_ecoponto') }}" method="post" class="add-form">
     <input type="text" name="nome" placeholder="Nome" required>
     <select name="tipo" required>
@@ -80,7 +79,6 @@
     <button type="submit">Adicionar Contentor</button>
   </form>
 
-  <!-- List of ecopontos -->
   <table>
     <thead>
       <tr>
