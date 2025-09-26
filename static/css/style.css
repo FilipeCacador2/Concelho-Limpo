@@ -220,8 +220,10 @@ footer nav ul li a:hover {
 }
 
 #map {
+  align-self: center;
   height: 400px;
-  width: 100%;
-  margin-top: 15px;
+  width: 50%;
+  margin: auto;
+  border-radius: 25px;
 }
 

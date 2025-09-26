@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Área de Administração</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon.png') }}">
   </head>
   
   <body>
@@ -63,6 +64,46 @@
           </tbody>
         </table>
       </section>
+
+      <section>
+  <h2>Gerir Ecopontos</h2>
+
+  <!-- Form to add a new ecoponto -->
+  <form action="{{ url_for('add_ecoponto') }}" method="post" class="add-form">
+    <input type="text" name="nome" placeholder="Nome" required>
+    <select name="tipo" required>
+      <option value="Contentor">Contentor</option>
+      <option value="Ecoponto">Ecoponto</option>
+    </select>
+    <input type="text" name="lat" placeholder="Latitude" required>
+    <input type="text" name="lng" placeholder="Longitude" required>
+    <button type="submit">Adicionar Contentor</button>
+  </form>
+
+  <!-- List of ecopontos -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Nome</th><th>Tipo</th><th>Latitude</th><th>Longitude</th><th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in ecopontos %}
+      <tr>
+        <td>{{ e.id }}</td>
+        <td>{{ e.nome }}</td>
+        <td>{{ e.tipo }}</td>
+        <td>{{ e.lat }}</td>
+        <td>{{ e.lng }}</td>
+        <td>
+          <a href="/delete/ecopontos/{{ e.id }}" class="delete-btn">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
 
     </main>
   </body>

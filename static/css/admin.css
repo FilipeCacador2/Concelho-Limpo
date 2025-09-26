@@ -1,38 +1,50 @@
+/* General layout */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
-  padding: 20px;
-  color: #2c3e50;
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f8;
+  color: #333;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  padding: 15px 25px;
+  background: linear-gradient(88deg, #047BEB 0%, #074d8f 50%, #047BEB 100%);
+  color: white;
 }
 
-h1 {
-  font-size: 1.8rem;
+header h1 {
+  margin: 0;
+  font-size: 1.5em;
 }
 
 .logout-btn {
-  padding: 8px 16px;
   background: #e74c3c;
   color: white;
-  border-radius: 5px;
+  padding: 8px 15px;
+  border-radius: 6px;
   text-decoration: none;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .logout-btn:hover {
   background: #c0392b;
+}
+
+/* Main content */
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 section {
@@ -41,52 +53,100 @@ section {
 
 h2 {
   margin-bottom: 15px;
-  color: #34495e;
+  color: #047BEB;
+  border-left: 5px solid #ec8209;
+  padding-left: 10px;
 }
 
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-thead {
-  background: #2c3e50;
+table th, table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+table th {
+  background: #047BEB;
   color: white;
+  font-weight: bold;
 }
 
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-td img {
-  display: block;
-  max-width: 150px;
-  max-height: 150px;
-  object-fit: cover;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-}
-
-
-tbody tr:hover {
+table tr:nth-child(even) {
   background: #f9f9f9;
 }
 
+table tr:hover {
+  background: #f1f1f1;
+}
+
+/* Buttons inside tables */
 .delete-btn {
+  display: inline-block;
   padding: 6px 12px;
   background: #e74c3c;
   color: white;
+  border-radius: 5px;
   text-decoration: none;
-  border-radius: 4px;
+  font-size: 0.9em;
   transition: background 0.3s;
 }
 
 .delete-btn:hover {
   background: #c0392b;
+}
+
+/* Add new ecoponto form */
+.add-form {
+  max-width: 600px;
+  margin: 20px 0;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.add-form input,
+.add-form select,
+.add-form button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+  border: 2px solid #047BEB;
+  box-shadow: 0 0 5px rgba(4,123,235,0.3);
+  outline: none;
+}
+
+.add-form button {
+  background: #2ecc71;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-form button:hover {
+  background: #27ae60;
+}
+
+/* Image previews (for reports) */
+table img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 5px;
 }

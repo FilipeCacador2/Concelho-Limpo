@@ -126,9 +126,13 @@ def admin():
     recolhas = cursor.fetchall()
     cursor.execute("SELECT id_report, localizacao FROM form_report")
     reports = cursor.fetchall()
+    cursor.execute("SELECT * FROM ecopontos")
+    ecopontos = cursor.fetchall()
+
     cursor.close()
     conn.close()
-    return render_template("admin.html", recolhas=recolhas, reports=reports, user=session["user_name"])
+
+    return render_template("admin.html", recolhas=recolhas, reports=reports, ecopontos=ecopontos, user=session["user_name"])
 
 
 @app.route("/delete/<table>/<int:item_id>")
@@ -146,6 +150,30 @@ def delete(table, item_id):
     cursor.close()
     conn.close()
     return redirect(url_for("admin"))
+
+@app.route("/add-ecoponto", methods=["POST"])
+def add_ecoponto():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    nome = request.form["nome"]
+    tipo = request.form["tipo"]
+    lat = request.form["lat"]
+    lng = request.form["lng"]
+
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO ecopontos (nome, tipo, lat, lng)
+        VALUES (%s, %s, %s, %s)
+    """, (nome, tipo, lat, lng))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    flash("Ecoponto adicionado com sucesso!", "success")
+    return redirect(url_for("admin"))
+
 
 
 @app.route("/logout")
