@@ -198,15 +198,18 @@ footer nav ul li a:hover {
 }
 
 .messages {
-  margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0
 }
 
 .alert {
-  align-self: center;
-  width: 250px;
-  padding: 12px;
+  padding: 12px 20px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .alert.success {
