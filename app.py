@@ -4,7 +4,7 @@ import mysql.connector, io
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
-
+# Ligação à Base de Dados
 def get_db():
     return mysql.connector.connect(
         host="localhost",
@@ -18,7 +18,7 @@ def get_db():
 def index():
     return render_template("index.html")
 
-
+# Formulário de pedido de recolha
 @app.route("/submit_recolha", methods=["POST"])
 def submit_recolha():
     telefone = request.form.get("telefone")
@@ -50,7 +50,7 @@ def submit_recolha():
 
 
 
-
+# Formulário de Realatório
 @app.route("/submit_report", methods=["POST"])
 def submit_report():
     conn = get_db()
@@ -65,7 +65,7 @@ def submit_report():
     flash("Ocorrência reportada com sucesso!", "success")
     return redirect(url_for("index"))
 
-
+# Inserção de Imagem
 @app.route("/image/<int:report_id>")
 def image(report_id):
     conn = get_db()
@@ -79,7 +79,8 @@ def image(report_id):
         return send_file(io.BytesIO(row[0]), mimetype="image/jpeg")
     else:
         return "No image", 404
-    
+
+# Mapa 
 @app.route("/map-data")
 def map_data():
     conn = get_db()
@@ -91,7 +92,7 @@ def map_data():
     return jsonify(points)
 
 
-
+# Login Admin
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -115,6 +116,7 @@ def login():
     return render_template("login.html")
 
 
+# Dashboard Admin
 @app.route("/admin")
 def admin():
     if "user_id" not in session:
