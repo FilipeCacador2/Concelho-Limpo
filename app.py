@@ -10,7 +10,7 @@ def get_db():
         host="localhost",
         user="root",
         password="",
-        database="coruche_limpo"
+        database="concelho_limpo"
     )
 
 
